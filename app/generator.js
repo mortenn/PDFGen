@@ -20,6 +20,7 @@ function Generator(API)
 	};
 	this.loadCSV = function(file)
 	{
+		ctrl.loading = true;
 		reader.readAsText(file);
 	};
 	this.format = '';
