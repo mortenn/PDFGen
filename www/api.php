@@ -28,9 +28,8 @@
 			$imagick = new Imagick($tempfile.'[0]');
 			$imagick->setImageFormat('jpg');
 			header('Content-Type: text/plain');
-			echo 'data:image/JPEG;base64,';
-			echo base64_encode($imagick->__toString());
-			die();
+			$response = ['image' => 'data:image/JPEG;base64,'.$imagick];
+			break;
 
 		default:
 			header('HTTP/1.0 501 Not Implemented');
