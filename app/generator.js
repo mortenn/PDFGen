@@ -13,7 +13,7 @@ function Generator(API)
 	reader.onload = function()
 	{
 		ctrl.csv = reader.result;
-		ctrl.columns = ctrl.csv.split('\n')[0].split(';');
+		ctrl.columns = ctrl.csv.split(/[\n\r]/)[0].split(';');
 	};
 	this.loadCSV = function(file)
 	{
