@@ -45,6 +45,10 @@
 							else
 								$this->SetTextColor(hexdec($matches[1]),hexdec($matches[2]),hexdec($matches[3]));
 						}
+						if(isset($field->x) && isset($field->y))
+							$this->SetXY($field->x, $field->y);
+						else if(isset($field->x))
+							$this->SetX($field->x);
 						$this->Cell($field->w, $field->h, $this->formatValue($field->text, $data), 0, 0, $field->align);
 						break;
 				}
