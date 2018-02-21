@@ -27,7 +27,6 @@
 			$generator->Output('F', $tempfile);
 			$imagick = new Imagick($tempfile.'[0]');
 			$imagick->setImageFormat('jpg');
-			header('Content-Type: text/plain');
 			$response = ['image' => 'data:image/JPEG;base64,'.$imagick];
 			break;
 
