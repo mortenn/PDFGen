@@ -2,12 +2,38 @@
 	<div class="card-body">
 		<h5 class="card-title">PDF Generator</h5>
 		<form>
-			<div class="form-group">
-				<label for="format">PDF-Format</label>
-				<textarea class="form-control" id="format" rows="3" ng-model="$ctrl.format"></textarea>
+			<div class="form-group" ng-repeat="item in $ctrl.format">
+				<select ng-model="item.type" class="form-control-sm" ng-change="$ctrl.setItemType(item, item.type)">
+					<option>Field type</option>
+					<option value="column">CSV</option>
+					<option value="text">Text</option>
+					<option value="image">Image</option>
+					<option value="qr">QR code</option>
+				</select>
+				<span ng-if="item.type=='column'">
+					<select class="form-control-sm" ng-options="label for label in $ctrl.columns" ng-model="item.column">
+						<option></option>
+					</select>
+				</span>
+				<span ng-if="item.align!==-1">
+					<select class="form-control-sm" ng-model="item.align">
+						<option value="L">Left</option>
+						<option value="C">Center</option>
+						<option value="R">Right</option>
+					</select>
+				</span>
+				<span ng-if="item.type=='image'">
+					<input class="form-control-sm" type="url" title="URL to image file" placeholder="https://imgur.com" ng-model="item.image">
+				</span>
+				<input class="form-control-sm" type="text" title="Horizontal cell position" placeholder="X" ng-model="item.x">
+				<input class="form-control-sm" type="text" title="Vertical cell position" placeholder="Y" ng-model="item.y">
+				<input class="form-control-sm" type="text" title="Cell width" placeholder="W" ng-model="item.w">
+				<input class="form-control-sm" type="text" title="Cell height" placeholder="H" ng-model="item.h" ng-if="item.h!==-1">
+				<input class="form-control-sm" type="color" title="Text colour" ng-model="item.colour" ng-if="item.color!==-1">
+				<input class="form-control-sm" type="text" title="Font size" placeholder="S" ng-model="item.s" ng-if="item.type!==-1">
 			</div>
-			<div class="form-group" ng-if="$ctrl.csv">
-				<select ng-options="label for label in $ctrl.columns" ng-model="column"></select>
+			<div class="form-group">
+				<div ng-click="$ctrl.format.push({})" class="btn btn-success">Add field</div>
 			</div>
 			<div class="form-group">
 				<div ng-disabled="$ctrl.loading" class="btn btn-info" ngf-select="$ctrl.loadCSV($file)">Load CSV</div>

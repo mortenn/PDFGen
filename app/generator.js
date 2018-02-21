@@ -14,8 +14,30 @@ function Generator(API, $scope)
 
 	this.loading = false;
 	this.csv = false;
-	this.format = '';
 	this.previewImage = false;
+	this.format = [];
+
+	this.setItemType = function(item, type)
+	{
+		if(type === 'image' || type === 'qr')
+		{
+			item.h = -1;
+			item.colour = -1;
+			item.w = -1;
+			item.align = -1;
+		}
+		else
+		{
+			item.h = item.h === -1 ? '' : item.h;
+			item.colour = item.colour === -1 ? '' : item.colour;
+			item.w = item.w === -1 ? '' : item.w;
+			item.align = item.align === -1 ? '' : item.align;
+		}
+		if(type !== 'image')
+			item.image = '';
+		if(type !== 'column')
+			item.column = '';
+	};
 
 	this.loadCSV = function(file)
 	{
@@ -25,13 +47,13 @@ function Generator(API, $scope)
 
 	this.loadedCSV = function()
 	{
-		ctrl.loading = false;
-		ctrl.csv = reader.result;
-		ctrl.columns = ctrl.csv.split(/[\n\r]/)[0].split(';');
+		this.loading = false;
+		this.csv = reader.result.split(/[\n\r]+/);
+		this.columns = this.csv[0].split(';');
 	};
 
 	this.preview = function()
 	{
-		this.previewImage = API.GetPreview({format:this.format,data:{}});
+		this.previewImage = API.GetPreview({format:this.format,data:this.csv});
 	}
 }
