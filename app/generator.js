@@ -10,6 +10,6 @@ function Generator()
 {
 	this.loadCSV = function(file)
 	{
-		console.log(file);
+		console.log(FileReader.readAsText(file));
 	};
 }
