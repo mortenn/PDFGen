@@ -1,12 +1,12 @@
 angular.module('pdfgen').component(
 	'generator',
 	{
-		controller: ['Upload',Generator],
+		controller: ['API',Generator],
 		templateUrl: 'view/generator.html'
 	}
 );
 
-function Generator()
+function Generator(API)
 {
 	var reader = new FileReader();
 	reader.onload = function()
@@ -17,4 +17,10 @@ function Generator()
 	{
 		reader.readAsText(file);
 	};
+	this.format = '';
+	this.previewImage = false;
+	this.preview = function()
+	{
+		this.previewImage = API.GetPreview({format:this.format,data:{}});
+	}
 }

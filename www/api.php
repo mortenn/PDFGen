@@ -9,6 +9,8 @@
 		die();
 	}
 
+	require_once('../PDFGenerator.php');
+
 	$json = file_get_contents('php://input');
 	$data = false;
 	if($json)
@@ -17,6 +19,19 @@
 	$response = false;
 	switch($request[1])
 	{
+		case 'preview':
+			// render to temp
+			$tempfile = tempnam('/tmp', 'pdf');
+			$generator = new PDFGenerator();
+			$generator->RenderPage($data);
+			$generator->Output('F', $tempfile);
+			$imagick = new Imagick($tempfile.'[0]');
+			$imagick->setImageFormat('jpg');
+			header('Content-Type: text/plain');
+			echo 'data:image/JPEG;base64,';
+			echo base64_encode($imagick->__toString());
+			die();
+
 		default:
 			header('HTTP/1.0 501 Not Implemented');
 	}
