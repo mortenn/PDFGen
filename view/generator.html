@@ -6,12 +6,12 @@
 				<label for="format">PDF-Format</label>
 				<textarea class="form-control" id="format" rows="3" ng-model="$ctrl.format"></textarea>
 			</div>
-			<div class="form-group" ng-if="$ctrl.csv">
-				<select ng-options="label for label in $ctrl.columns" ng-model="column"></select>
+			<div class="form-group" ng-if="csv">
+				<select ng-options="label for label in columns" ng-model="column"></select>
 			</div>
 			<div class="form-group">
-				<div ng-disabled="$ctrl.loading" class="btn btn-info" ngf-select="$ctrl.loadCSV($file)">Load CSV</div>
-				<div ng-if="$ctrl.csv" class="btn btn-info" ng-click="$ctrl.preview()">Preview PDF</div>
+				<div ng-disabled="loading" class="btn btn-info" ngf-select="$ctrl.loadCSV($file)">Load CSV</div>
+				<div ng-if="csv" class="btn btn-info" ng-click="$ctrl.preview()">Preview PDF</div>
 			</div>
 		</form>
 	</div>

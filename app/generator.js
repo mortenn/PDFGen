@@ -1,27 +1,26 @@
 angular.module('pdfgen').component(
 	'generator',
 	{
-		controller: ['API',Generator],
+		controller: ['API','$scope',Generator],
 		templateUrl: 'view/generator.html'
 	}
 );
 
-function Generator(API)
+function Generator(API, $scope)
 {
 	var reader = new FileReader();
-	var ctrl = this;
-	this.loading = false;
-	this.csv = false;
+	$scope.loading = false;
+	$scope.csv = false;
 	reader.onload = function()
 	{
 		console.log(reader.result);
-		ctrl.loading = false;
-		ctrl.csv = reader.result;
-		ctrl.columns = ctrl.csv.split(/[\n\r]/)[0].split(';');
+		$scope.loading = false;
+		$scope.csv = reader.result;
+		$scope.columns = $scope.csv.split(/[\n\r]/)[0].split(';');
 	};
 	this.loadCSV = function(file)
 	{
-		ctrl.loading = true;
+		$scope.loading = true;
 		console.log(file);
 		reader.readAsText(file);
 	};
