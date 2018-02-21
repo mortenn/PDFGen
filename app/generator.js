@@ -56,6 +56,6 @@ function Generator(API, $scope)
 
 	this.import = function()
 	{
-		angular.fromJson($('#advancededitor').val())
+		this.format = angular.fromJson($('#advancededitor').val())
 	};
 }
