@@ -10,8 +10,11 @@ function Generator(API)
 {
 	var reader = new FileReader();
 	var ctrl = this;
+	this.loading = false;
+	this.csv = false;
 	reader.onload = function()
 	{
+		ctrl.loading = false;
 		ctrl.csv = reader.result;
 		ctrl.columns = ctrl.csv.split(/[\n\r]/)[0].split(';');
 	};
