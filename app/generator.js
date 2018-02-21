@@ -19,24 +19,21 @@ function Generator(API, $scope)
 
 	this.setItemType = function(item, type)
 	{
+		if(type !== 'column')
+		{
+			delete item.prefix;
+			delete item.column;
+			delete item.suffix;
+		}
 		if(type === 'image' || type === 'qr')
 		{
-			item.h = -1;
-			item.colour = -1;
-			item.w = -1;
-			item.align = -1;
+			delete item.h;
+			delete item.colour;
+			delete item.w;
+			delete item.align;
 		}
 		else
-		{
-			item.h = item.h === -1 ? '' : item.h;
-			item.colour = item.colour === -1 ? '' : item.colour;
-			item.w = item.w === -1 ? '' : item.w;
-			item.align = item.align === -1 ? '' : item.align;
-		}
-		if(type !== 'image')
-			item.image = '';
-		if(type !== 'column')
-			item.column = '';
+			delete item.image;
 	};
 
 	this.loadCSV = function(file)
@@ -55,5 +52,10 @@ function Generator(API, $scope)
 	this.preview = function()
 	{
 		this.previewImage = API.GetPreview({format:this.format,data:this.csv});
-	}
+	};
+
+	this.import = function()
+	{
+		angular.fromJson($('#advancededitor').val())
+	};
 }
