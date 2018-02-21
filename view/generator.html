@@ -10,14 +10,14 @@
 					<option value="image">Image</option>
 					<option value="qr">QR code</option>
 				</select>
-				<span ng-if="item.type=='column'">
+				<span ng-if="item.type==='column'">
 					<input type="text" placeholder="Prefix" ng-model="item.prefix">
 					<select class="form-control-sm" ng-options="label for label in $ctrl.columns" ng-model="item.column">
 						<option value=""></option>
 					</select>
 					<input type="text" placeholder="Suffix" ng-model="item.suffix">
 				</span>
-				<span ng-if="item.align!==-1">
+				<span ng-if="item.type==='text'||item.type==='column'">
 					<select class="form-control-sm" ng-model="item.align">
 						<option value="L">Left</option>
 						<option value="C">Center</option>
