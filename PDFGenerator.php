@@ -33,10 +33,31 @@
 				switch($field->type)
 				{
 					case 'image':
-						$this->Image($field->image, (int)$field->x, (int)$field->y, (int)$field->w);
+						$this->Image($this->formatValue($field->image, $data), (int)$field->x, (int)$field->y, (int)$field->w);
+						break;
+					case 'text':
+						if(!isset($field->colour))
+							$this->SetTextColor(0);
+						else if(preg_match('/#(..)(..)(..)', $field->colour, $matches))
+						{
+							if($matches[1] == $matches[2] && $matches[1] == $matches[3])
+								$this->SetTextColor(hexdec($matches[1]));
+							else
+								$this->SetTextColor(hexdec($matches[1]),hexdec($matches[2]),hexdec($matches[3]));
+						}
+						$this->Cell($field->w, $field->h, $this->formatValue($field->text, $data), 0, 0, $field->align);
 						break;
 				}
 			}
+		}
+
+		private function formatValue($value, $data)
+		{
+			if(!preg_match('/%\d+%/', $value))
+				return $value;
+			foreach($data as $i => $v)
+				$value = str_replace('%'.($i+1).'%', $v, $value);
+			return $value;
 		}
 
 		private $format;
