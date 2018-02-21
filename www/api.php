@@ -30,7 +30,7 @@
 			$imagick = new Imagick($tempfile.'[0]');
 			$imagick->setImageFormat('jpg');
 			error_log(__LINE__);
-			$response = ['image' => 'data:image/JPEG;base64,'.$imagick];
+			$response = ['image' => 'data:image/JPEG;base64,'.base64_encode($imagick)];
 			error_log(__LINE__);
 			error_log($imagick);
 			break;
