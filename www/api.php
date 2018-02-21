@@ -22,12 +22,17 @@
 		case 'preview':
 			// render to temp
 			$tempfile = tempnam('/tmp', 'pdf');
+			error_log(__LINE__);
 			$generator = new PDFGenerator();
 			$generator->RenderPage($data);
 			$generator->Output('F', $tempfile);
+			error_log(__LINE__);
 			$imagick = new Imagick($tempfile.'[0]');
 			$imagick->setImageFormat('jpg');
+			error_log(__LINE__);
 			$response = ['image' => 'data:image/JPEG;base64,'.$imagick];
+			error_log(__LINE__);
+			error_log($imagick);
 			break;
 
 		default:
