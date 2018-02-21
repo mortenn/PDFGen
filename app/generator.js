@@ -8,8 +8,13 @@ angular.module('pdfgen').component(
 
 function Generator()
 {
+	var reader = new FileReader();
+	reader.onload = function()
+	{
+		console.log(reader.result);
+	};
 	this.loadCSV = function(file)
 	{
-		console.log(FileReader.readAsText(file));
+		reader.readAsText(file);
 	};
 }
