@@ -19,20 +19,15 @@ function Generator(API, $scope)
 
 	this.setItemType = function(item, type)
 	{
-		if(type !== 'column')
+		if(type !== 'text')
 		{
-			delete item.prefix;
-			delete item.column;
-			delete item.suffix;
-		}
-		if(type === 'image' || type === 'qr')
-		{
+			delete item.text;
+			delete item.align;
 			delete item.h;
 			delete item.colour;
 			delete item.w;
-			delete item.align;
 		}
-		else
+		if(type !== 'image' && type !== 'qr')
 			delete item.image;
 	};
 
@@ -46,7 +41,6 @@ function Generator(API, $scope)
 	{
 		this.loading = false;
 		this.csv = reader.result.split(/[\n\r]+/);
-		this.columns = this.csv[0].split(';');
 	};
 
 	this.preview = function()
