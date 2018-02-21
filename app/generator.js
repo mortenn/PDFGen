@@ -9,19 +9,22 @@ angular.module('pdfgen').component(
 function Generator(API, $scope)
 {
 	var reader = new FileReader();
-	$scope.loading = false;
-	$scope.csv = false;
+	this.loading = false;
+	this.csv = false;
 	reader.onload = function()
 	{
-		console.log(reader.result);
-		$scope.loading = false;
-		$scope.csv = reader.result;
-		$scope.columns = $scope.csv.split(/[\n\r]/)[0].split(';');
+		$scope.$apply(
+			function()
+			{
+				ctrl.loading = false;
+				ctrl.csv = reader.result;
+				ctrl.columns = ctrl.csv.split(/[\n\r]/)[0].split(';');
+			}
+		);
 	};
 	this.loadCSV = function(file)
 	{
-		$scope.loading = true;
-		console.log(file);
+		this.loading = true;
 		reader.readAsText(file);
 	};
 	this.format = '';
