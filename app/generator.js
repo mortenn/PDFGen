@@ -52,4 +52,9 @@ function Generator(API, $scope)
 	{
 		this.format = angular.fromJson($('#advancededitor').val())
 	};
+
+	this.export = function()
+	{
+		$('#advancededitor').val(angular.toJson(this.format));
+	};
 }

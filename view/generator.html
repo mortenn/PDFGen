@@ -48,6 +48,11 @@
 </div>
 
 <div class="card">
-	<textarea class="form-control" rows="20" id="advancededitor">{{$ctrl.format|json}}</textarea>
-	<button class="btn btn-success" ng-click="$ctrl.import()">Import</button>
+	<div class="card-body">
+		<div class="form-group">
+			<button class="btn btn-success" ng-click="$ctrl.import()">Import</button>
+			<button class="btn btn-success" ng-click="$ctrl.export()">Export</button>
+		</div>
+		<textarea class="form-control" rows="20" id="advancededitor"></textarea>
+	</div>
 </div>
