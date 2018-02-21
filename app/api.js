@@ -7,7 +7,7 @@ angular.module('pdfgen')
 				'/api.php/:action',
 				{},
 				{
-					'GetPreview': { method: 'GET', params: { action: 'preview' } }
+					'GetPreview': { method: 'POST', params: { action: 'preview' } }
 				}
 			);
 		}
