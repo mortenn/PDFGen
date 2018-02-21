@@ -14,6 +14,7 @@ function Generator(API)
 	this.csv = false;
 	reader.onload = function()
 	{
+		console.log(reader.result);
 		ctrl.loading = false;
 		ctrl.csv = reader.result;
 		ctrl.columns = ctrl.csv.split(/[\n\r]/)[0].split(';');
@@ -21,6 +22,7 @@ function Generator(API)
 	this.loadCSV = function(file)
 	{
 		ctrl.loading = true;
+		console.log(file);
 		reader.readAsText(file);
 	};
 	this.format = '';
