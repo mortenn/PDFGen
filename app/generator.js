@@ -9,9 +9,11 @@ angular.module('pdfgen').component(
 function Generator(API)
 {
 	var reader = new FileReader();
+	var ctrl = this;
 	reader.onload = function()
 	{
-		console.log(reader.result);
+		ctrl.csv = reader.result;
+		ctrl.columns = ctrl.csv.split('\n')[0].split(';');
 	};
 	this.loadCSV = function(file)
 	{
