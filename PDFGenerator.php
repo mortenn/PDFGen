@@ -21,6 +21,7 @@
 		public function RenderPage($data)
 		{
 			$this->AddPage();
+			$pdf->SetFont('Arial','',14);
 			$this->Write(5, 'Test');
 		}
 	}
