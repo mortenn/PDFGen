@@ -30,10 +30,11 @@
 				<input class="form-control-sm" size="2" type="text" title="Horizontal cell position" placeholder="X" ng-model="item.x">
 				<input class="form-control-sm" size="2" type="text" title="Vertical cell position" placeholder="Y" ng-model="item.y">
 				<input class="form-control-sm" size="2" type="text" title="Cell width" placeholder="W" ng-model="item.w">
-				<input class="form-control-sm" size="2" type="text" title="Cell height" placeholder="H" ng-model="item.h" ng-if="item.h!==-1">
-				<input class="form-control-sm" size="2" type="color" title="Text colour" ng-model="item.colour" ng-if="item.color!==-1">
-				<input class="form-control-sm" size="2" type="text" title="Font size" placeholder="S" ng-model="item.s" ng-if="item.type!==-1">
+				<input class="form-control-sm" size="2" type="text" title="Cell height" placeholder="H" ng-model="item.h" ng-if="item.type==='text'||item.type==='column'">
+				<input class="form-control-sm" size="2" type="color" title="Text colour" ng-model="item.colour" ng-if="item.type==='text'||item.type==='column'">
+				<input class="form-control-sm" size="2" type="text" title="Font size" placeholder="S" ng-model="item.s" ng-if="item.type==='text'||item.type==='column'">
 			</div>
+			<small>Units in mm</small>
 			<div class="form-group">
 				<div ng-click="$ctrl.format.push({})" class="btn btn-success">Add field</div>
 			</div>
@@ -47,7 +48,7 @@
 
 <div class="card" ng-if="$ctrl.previewImage">
 	<div class="card-body">
-		<img data-ng-src="{{$ctrl.previewImage.image}}">
+		<img data-ng-src="{{$ctrl.previewImage.image}}" style="border:solid 2px black; box-shadow: 10px 10px black">
 	</div>
 </div>
 
