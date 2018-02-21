@@ -49,6 +49,8 @@
 							$this->SetXY($field->x, $field->y);
 						else if(isset($field->x))
 							$this->SetX($field->x);
+						if(isset($field->s))
+							$this->SetFontSize($field->s);
 						$this->Cell($field->w, $field->h, $this->formatValue($field->text, $data), 0, 0, $field->align);
 						break;
 				}
