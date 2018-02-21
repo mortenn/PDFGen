@@ -1,0 +1,11 @@
+Options -Indexes +MultiViews
+
+<FilesMatch "css\.gz$">
+    Header set Content-Encoding gzip
+    Header set Content-Type "text/css; charset=utf-8"
+</FilesMatch>
+
+<FilesMatch "js\.gz$">
+    Header set Content-Encoding gzip
+    Header set Content-Type "text/css; charset=utf-8"
+</FilesMatch>

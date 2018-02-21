@@ -1,0 +1,11 @@
+Options -Indexes +MultiViews
+
+<FilesMatch "\.woff2?\.gz$">
+    Header set Content-Encoding gzip
+    Header set Content-Type "application/font-woff"
+</FilesMatch>
+
+<FilesMatch "\.ttf\.gz$">
+    Header set Content-Encoding gzip
+    Header set Content-Type "application/font-sfnt"
+</FilesMatch>
