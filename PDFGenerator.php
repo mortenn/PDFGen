@@ -18,10 +18,26 @@
 		{
 		}
 
-		public function RenderPage($data)
+		public function RenderPreview($data)
 		{
+			$this->format = $data->format;
 			$this->AddPage();
 			$this->SetFont('Arial','',14);
-			$this->Write(5, 'Test');
+			$this->RenderPage(explode(';', $data->data[1]));
 		}
+
+		public function RenderPage($data)
+		{
+			foreach($this->format as $field)
+			{
+				switch($field->type)
+				{
+					case 'image':
+						$this->Image($field->image, (int)$field->x, (int)$field->y, (int)$field->w);
+						break;
+				}
+			}
+		}
+
+		private $format;
 	}

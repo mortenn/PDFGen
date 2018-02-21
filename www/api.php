@@ -23,7 +23,7 @@
 			// render to temp
 			$tempfile = tempnam('/tmp', 'pdf');
 			$generator = new PDFGenerator();
-			$generator->RenderPage($data);
+			$generator->RenderPreview($data);
 			$generator->Output('F', $tempfile);
 			$imagick = new Imagick($tempfile.'[0]');
 			$imagick->setImageFormat('jpg');
