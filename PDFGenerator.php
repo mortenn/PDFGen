@@ -51,7 +51,12 @@
 							$this->SetX($field->x);
 						if(isset($field->s))
 							$this->SetFontSize($field->s);
-						$this->Cell($field->w, $field->h, $this->formatValue($field->text, $data), 0, 0, $field->align);
+						$this->Cell(
+							$field->w, $field->h,
+							iconv('UTF-8', 'windows-1252', $this->formatValue($field->text, $data)),
+							0, 0,
+							$field->align
+						);
 						break;
 				}
 			}
