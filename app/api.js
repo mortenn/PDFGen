@@ -8,7 +8,7 @@ angular.module('pdfgen')
 				{},
 				{
 					'GetPreview': { method: 'POST', params: { action: 'preview' } },
-					'GetPDF': { method: 'POST', params: { action: 'download'} }
+					'GetPDF': { method: 'POST', params: { action: 'render'} }
 				}
 			);
 		}
