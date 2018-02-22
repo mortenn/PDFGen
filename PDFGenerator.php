@@ -23,7 +23,18 @@
 			$this->format = $data->format;
 			$this->AddPage();
 			$this->SetFont('Arial','',14);
-			$this->RenderPage(explode(';', $data->data[1]));
+			$this->RenderPage(explode(';', $data->data));
+		}
+
+		public function Render($data)
+		{
+			$this->format = $data->format;
+			$this->SetFont('Arial','',14);
+			foreach($data->data as $page)
+			{
+				$this->AddPage();
+				$this->RenderPage(explode(';', $page));
+			}
 		}
 
 		public function RenderPage($data)
