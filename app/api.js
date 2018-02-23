@@ -4,7 +4,7 @@ angular.module('pdfgen')
 		function($resource)
 		{
 			return $resource(
-				'/api.php/:action',
+				'api.php/:action',
 				{},
 				{
 					'GetPreview': { method: 'POST', params: { action: 'preview' } }
