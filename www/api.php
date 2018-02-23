@@ -28,6 +28,16 @@
 			$imagick = new Imagick($tempfile.'[0]');
 			$imagick->setImageFormat('jpg');
 			$response = ['image' => 'data:image/JPEG;base64,'.base64_encode($imagick)];
+			unlink($tempfile);
+			break;
+
+		case 'render':
+			$tempfile = tempnam('/tmp', 'pdf');
+			$generator = new PDFGenerator();
+			$generator->Render($data);
+			$generator->Output('F', $tempfile);
+			$response = ['content' => base64_encode(file_get_contents($tempfile))];
+			unlink($tempfile);
 			break;
 
 		default:

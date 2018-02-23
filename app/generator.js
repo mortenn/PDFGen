@@ -45,7 +45,17 @@ function Generator(API, $scope)
 
 	this.preview = function()
 	{
-		this.previewImage = API.GetPreview({format:this.format,data:this.csv});
+		this.previewImage = API.GetPreview({format:this.format,data:this.csv[1]});
+	};
+
+	this.download = function()
+	{
+		API.GetPDF({format:this.format,data:this.csv.slice(1)},
+			function(document)
+			{
+				window.open("data:application/pdf;base64, " + encodeURIComponent(document.content));
+			}
+		);
 	};
 
 	this.import = function()
