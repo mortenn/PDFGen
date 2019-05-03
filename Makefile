@@ -40,4 +40,5 @@ www/index.html.gz: view/*.html head.html foot.html
 	cat foot.html >> www/index.html
 	gzip -f www/index.html
 
+
 FORCE:
